@@ -1,0 +1,6 @@
+{% extends "switterapp/base.html" %} {% block content %}
+
+<p>Author: <a href="{% url 'users:view_profile' swit.user.id %}">{{swit.user}}</a></p>
+<p>Text: <b>{{swit.text}}</b></p>
+<p>Time of creation: <kbd>{{swit.created_at}}</kbd></p>
+{% endblock %}

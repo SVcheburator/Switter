@@ -1,0 +1,10 @@
+{% extends "switterapp/base.html" %}
+
+{% block content %}
+
+<p>Author: {{profile.user.username}}</p>
+
+<p>Avatar:</p>
+<img src="{{ profile.avatar.url }}" alt="avatar of user"/>
+
+{% endblock content %}
