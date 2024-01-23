@@ -13,10 +13,10 @@ class Swits(models.Model):
         return f"{self.text}"
     
 
-# class Likes(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     swit = models.ForeignKey(Swits, on_delete=models.CASCADE)
-#     created_at = models.DateTimeField(auto_now_add=True)
+class Likes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    swit = models.ForeignKey(Swits, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-#     class Meta:
-#         unique_together = ('user', 'swit')
+    class Meta:
+        unique_together = ('user', 'swit')

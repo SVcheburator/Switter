@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db.utils import IntegrityError
 
 from .forms import SwitForm
-from .models import Swits
+from .models import Swits, Likes
 
 # Create your views here.
 def main(request):
@@ -27,4 +28,19 @@ def add_swit(request):
 
 def detail_swit(request, swit_id):
     swit = get_object_or_404(Swits, pk=swit_id)
-    return render(request, 'switterapp/detail_swit.html', {"swit": swit})
+    likes = Likes.objects.filter(swit_id=swit_id).count()
+    return render(request, 'switterapp/detail_swit.html', {'swit': swit, 'likes': likes})
+
+
+
+def like_swit(request, swit_id):
+    swit = get_object_or_404(Swits, pk=swit_id)
+    user = request.user
+    try:
+        Likes.objects.create(user=user, swit=swit)
+    except IntegrityError:
+        print('aaaaa')
+
+    likes = Likes.objects.filter(swit_id=swit_id).count()
+
+    return render(request, 'switterapp/detail_swit.html', {'swit': swit, 'likes': likes})
