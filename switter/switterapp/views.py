@@ -40,7 +40,7 @@ def like_swit(request, swit_id):
     try:
         Likes.objects.create(user=user, swit=swit)
     except IntegrityError:
-        print('aaaaa')
+        Likes.objects.get(swit_id=swit_id, user_id=user.id).delete()
 
     likes = Likes.objects.filter(swit_id=swit_id).count()
 
