@@ -33,6 +33,7 @@ def detail_swit(request, swit_id):
 
 
 
+@login_required(login_url='/users/login/')
 def like_swit(request, swit_id):
     swit = get_object_or_404(Swits, pk=swit_id)
     user = request.user
