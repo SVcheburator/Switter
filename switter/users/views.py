@@ -65,7 +65,8 @@ def my_profile(request):
             messages.success(request, 'Your profile is updated successfully')
             return redirect(to='users:my_profile')
 
-    profile_form = ProfileForm(instance=request.user.profile)
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'users/my_profile.html', {'profile_form': profile_form})
 
 
