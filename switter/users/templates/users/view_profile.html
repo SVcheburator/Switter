@@ -5,6 +5,10 @@
 <p>Author: {{profile.user.username}}</p>
 
 <p>Avatar:</p>
-<img src="{{ profile.avatar.url }}" width="250" height="250" alt="avatar of user"/>
+{% if profile.avatar %}
+    <a href="{{ profile.avatar.url }}" target="_blank">
+        <img src="{{ profile.avatar.url }}" width="250" height="250" alt="avatar of user"/>
+    </a>
+{% endif %}
 
 {% endblock content %}

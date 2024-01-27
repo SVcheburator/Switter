@@ -4,7 +4,11 @@
 
 <div>
     <h1>{{user.username}} - your profile settings</h1>
-    <img src="{{ user.profile.avatar.url }}" width="250" height="250" alt="avatar of user"/>
+    {% if profile_form.avatar.value %}
+      <a href="{{ profile_form.avatar.value.url }}" target="_blank">
+        <img src="{{ user.profile.avatar.url }}" width="250" height="250" alt="Current Avatar">
+      </a>
+    {% endif %}
 </div>
 
 {% if messages %}
