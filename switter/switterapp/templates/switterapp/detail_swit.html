@@ -2,7 +2,11 @@
 
 <p>Author: <a href="{% url 'users:view_profile' swit.user.id %}">{{swit.user}}</a></p>
 <p>Text: <b>{{swit.text}}</b></p>
-<p><a href="{% url 'switterapp:like_swit' swit.id %}">like</a></p>
+<p>
+    <a href="{% url 'switterapp:like_swit' swit.id %}">like</a>
+    <a href="{% url 'switterapp:dislike_swit' swit.id %}">dislike</a>
+</p>
 <p>Likes: {{likes}}</p>
+<p>Dislikes: {{dislikes}}</p>
 <p>Time of creation: <kbd>{{swit.created_at}}</kbd></p>
 {% endblock %}
