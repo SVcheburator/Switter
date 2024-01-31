@@ -8,5 +8,9 @@
 </p>
 <p>Likes: {{likes}}</p>
 <p>Dislikes: {{dislikes}}</p>
+
+<p><a href="{% url 'switterapp:add_comment' swit.id %}">Add comment</a></p>
+<p><a href="{% url 'switterapp:show_comments' swit.id %}">Comments</a></p>
+
 <p>Time of creation: <kbd>{{swit.created_at}}</kbd></p>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.forms import ModelForm, CharField, TextInput
-from .models import Swits
+from .models import Swits, Comments
 
 
 class SwitForm(ModelForm):
@@ -10,3 +10,12 @@ class SwitForm(ModelForm):
         model = Swits
         fields = ['text']
         exclude = ['likes']
+
+
+class CommentForm(ModelForm):
+
+    text = CharField(min_length=5, widget=TextInput())
+
+    class Meta:
+        model = Comments
+        fields = ['text']

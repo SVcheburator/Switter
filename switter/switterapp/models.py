@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Create your models here.
+# Swits
 class Swits(models.Model):
     text = models.CharField(max_length=1000, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -29,3 +29,15 @@ class Dislikes(models.Model):
 
     class Meta:
         unique_together = ('user', 'swit')
+
+
+# Comments
+class Comments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    swit = models.ForeignKey(Swits, on_delete=models.CASCADE)
+    text = models.CharField(max_length=500, null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+    def _str_(self):
+        return f"{self.text}"

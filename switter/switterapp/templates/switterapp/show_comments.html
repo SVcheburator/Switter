@@ -1,0 +1,18 @@
+{% extends "switterapp/base.html" %}
+
+{% block content %}
+
+<nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+    <ul>
+        <li><a href="{% url 'switterapp:detail_swit' swit_id %}" role="button"> Go back to the swit </a></li>
+    </ul>
+</nav>
+
+{% for comment in comments %}
+<ul>
+    <li>
+        <p>{{comment.text}}</p>
+    </li>
+</ul>
+{% endfor %}
+{% endblock %}

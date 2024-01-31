@@ -1,0 +1,26 @@
+{% extends "switterapp/base.html" %}
+
+{% block content %}
+
+<nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+    <ul>
+        <li><a href="{% url 'switterapp:detail_swit' swit_id %}" role="button"> Go back to the swit </a></li>
+    </ul>
+</nav>
+
+<form method="POST" action="{% url 'switterapp:add_comment' swit_id %}">
+    {% csrf_token %}
+    <div style="padding: 10px">
+        <label> Comment text:
+            {{ form.text }}
+        </label>
+        <span>{{ form.errors.name }}</span>
+    </div>
+
+    <div class="grid">
+        <button type="submit">Submit</button>
+        <button type="reset" class="secondary">Reset</button>
+    </div>
+</form>
+
+{% endblock %}

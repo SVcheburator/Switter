@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.utils import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 
-from .forms import SwitForm
-from .models import Swits, Likes, Dislikes
+from .forms import SwitForm, CommentForm
+from .models import Swits, Likes, Dislikes, Comments
 
 # Create your views here.
 def main(request):
@@ -71,3 +71,27 @@ def dislike_swit(request, swit_id):
     dislikes = Dislikes.objects.filter(swit_id=swit_id).count()
     
     return render(request, 'switterapp/detail_swit.html', {'swit': swit, 'likes': likes, 'dislikes': dislikes})
+
+
+@login_required(login_url='/users/login/')
+def add_comment(request, swit_id):
+    swit = get_object_or_404(Swits, pk=swit_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():                                                                 
+            new_comment = form.save(commit=False)
+            new_comment.swit = swit
+            new_comment.user = request.user
+            new_comment.save()
+            comments = Comments.objects.filter(swit_id=swit_id)
+            return render(request, 'switterapp/show_comments.html', {'swit_id': swit_id, 'comments': comments})
+        else:
+            return render(request, 'switterapp/add_comment.html', {'swit_id': swit_id, 'form': form})
+    
+    return render(request, 'switterapp/add_comment.html', {'swit_id': swit_id, 'form': CommentForm})
+
+
+def show_comments(request, swit_id):
+    comments = Comments.objects.filter(swit_id=swit_id)
+    return render(request, 'switterapp/show_comments.html', {'swit_id': swit_id, 'comments': comments})
