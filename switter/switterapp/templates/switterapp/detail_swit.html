@@ -2,10 +2,15 @@
 
 <p>Author: <a href="{% url 'users:view_profile' swit.user.id %}">{{swit.user}}</a></p>
 <p>Text: <b>{{swit.text}}</b></p>
-<p>
-    <a href="{% url 'switterapp:like_swit' swit.id %}">like</a>
-    <a href="{% url 'switterapp:dislike_swit' swit.id %}">dislike</a>
-</p>
+
+{% load static %}
+<a href="{% url 'switterapp:like_swit' swit.id %}">
+    <img src="{% static 'images/like_btn.png' %}" width="30" height="30">
+</a>
+<a href="{% url 'switterapp:dislike_swit' swit.id %}">
+    <img src="{% static 'images/dislike_btn.png' %}" width="30" height="30">
+</a>
+
 <p>Likes: {{likes}}</p>
 <p>Dislikes: {{dislikes}}</p>
 
