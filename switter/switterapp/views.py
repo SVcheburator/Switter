@@ -48,10 +48,7 @@ def like_swit(request, swit_id):
     except IntegrityError:
         Likes.objects.get(swit_id=swit_id, user_id=user.id).delete()
 
-    likes = Likes.objects.filter(swit_id=swit_id).count()
-    dislikes = Dislikes.objects.filter(swit_id=swit_id).count()
-
-    return render(request, 'switterapp/detail_swit.html', {'swit': swit, 'likes': likes, 'dislikes': dislikes})
+    return redirect(to='switterapp:detail_swit', swit_id=swit_id)
 
 
 @login_required(login_url='/users/login/')
@@ -67,10 +64,7 @@ def dislike_swit(request, swit_id):
     except IntegrityError:
         Dislikes.objects.get(swit_id=swit_id, user_id=user.id).delete()
 
-    likes = Likes.objects.filter(swit_id=swit_id).count()
-    dislikes = Dislikes.objects.filter(swit_id=swit_id).count()
-    
-    return render(request, 'switterapp/detail_swit.html', {'swit': swit, 'likes': likes, 'dislikes': dislikes})
+    return redirect(to='switterapp:detail_swit', swit_id=swit_id)
 
 
 @login_required(login_url='/users/login/')
@@ -84,8 +78,7 @@ def add_comment(request, swit_id):
             new_comment.swit = swit
             new_comment.user = request.user
             new_comment.save()
-            comments = Comments.objects.filter(swit_id=swit_id)
-            return render(request, 'switterapp/show_comments.html', {'swit_id': swit_id, 'comments': comments})
+            return redirect(to='switterapp:show_comments', swit_id=swit_id)
         else:
             return render(request, 'switterapp/add_comment.html', {'swit_id': swit_id, 'form': form})
     
