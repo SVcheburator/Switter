@@ -9,6 +9,11 @@ from .models import Swits, Likes, Dislikes, Comments
 # Create your views here.
 def main(request):
     swits = Swits.objects.all()
+
+    for swit in swits:
+        swit.likes = Likes.objects.filter(swit_id=swit.id).count()
+        swit.dislikes = Dislikes.objects.filter(swit_id=swit.id).count()
+
     return render(request, 'switterapp/index.html', {'swits': swits})
 
 

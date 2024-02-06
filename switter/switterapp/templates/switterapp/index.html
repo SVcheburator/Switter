@@ -30,7 +30,8 @@
     {% for swit in swits %}
     <ul>
         <li>
-            <a href="{% url 'switterapp:detail_swit' swit.id %}">{{swit.text}}</a>
+            <a href="{% url 'switterapp:detail_swit' swit.id %}">{{ swit.text }}</a>
+            <p>Likes: {{ swit.likes }}<br>Disikes: {{ swit.dislikes }}</p>
         </li>
     </ul>
     {% endfor %}
