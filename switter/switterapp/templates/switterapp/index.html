@@ -27,11 +27,15 @@
     </nav>
     
 
+    {% load static %}
     {% for swit in swits %}
     <ul>
         <li>
             <a href="{% url 'switterapp:detail_swit' swit.id %}">{{ swit.text }}</a>
-            <p>Likes: {{ swit.likes }}<br>Disikes: {{ swit.dislikes }}</p>
+            <p>
+                <img src="{% static 'images/like_btn.png' %}" width="30" height="30">{{ swit.likes }}
+                <img src="{% static 'images/dislike_btn.png' %}" width="30" height="30">{{ swit.dislikes }}
+            </p>
         </li>
     </ul>
     {% endfor %}
