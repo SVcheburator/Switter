@@ -11,7 +11,7 @@
 {% for comment in comments %}
 <ul>
     <li>
-        <p>{{comment.text}}</p>
+        <p><a href="{% url 'users:view_profile' comment.user.id %}">{{comment.user}}</a>: {{comment.text}}</p>
     </li>
 </ul>
 {% endfor %}
