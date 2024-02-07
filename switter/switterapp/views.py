@@ -20,7 +20,7 @@ def main(request):
 @login_required
 def add_swit(request):
     if request.method == 'POST':
-        form = SwitForm(request.POST)
+        form = SwitForm(request.POST, request.FILES)
         if form.is_valid():
             new_swit = form.save(commit=False)
             new_swit.user = request.user

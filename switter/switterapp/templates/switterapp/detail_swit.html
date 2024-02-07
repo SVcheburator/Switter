@@ -1,15 +1,24 @@
 {% extends "switterapp/base.html" %} {% block content %}
 
 <p>Author: <a href="{% url 'users:view_profile' swit.user.id %}">{{swit.user}}</a></p>
+
+{% if swit.image %}
+    <a href="{{ swit.image.url }}" target="_blank">
+        <img src="{{ swit.image.url }}" width="250" height="250" alt="Swit image"/>
+    </a>
+{% endif %}
+
 <p>Text: <b>{{swit.text}}</b></p>
 
 {% load static %}
-<a href="{% url 'switterapp:like_swit' swit.id %}">
-    <img src="{% static 'images/like_btn.png' %}" width="30" height="30">
-</a>{{ likes }}
-<a href="{% url 'switterapp:dislike_swit' swit.id %}">
-    <img src="{% static 'images/dislike_btn.png' %}" width="30" height="30">
-</a>{{ dislikes }}
+<p>
+    <a href="{% url 'switterapp:like_swit' swit.id %}">
+        <img src="{% static 'images/like_btn.png' %}" width="30" height="30">
+    </a>{{ likes }}
+    <a href="{% url 'switterapp:dislike_swit' swit.id %}">
+        <img src="{% static 'images/dislike_btn.png' %}" width="30" height="30">
+    </a>{{ dislikes }}
+</p>
 
 
 <p><a href="{% url 'switterapp:add_comment' swit.id %}">Add comment</a></p>

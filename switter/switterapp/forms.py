@@ -8,7 +8,7 @@ class SwitForm(ModelForm):
 
     class Meta:
         model = Swits
-        fields = ['text']
+        fields = ['text', 'image']
         exclude = ['likes']
 
 

@@ -2,12 +2,10 @@
 
 {% block content %}
 
-<form method="POST" action="{% url 'switterapp:add_swit' %}">
+<form method="POST" enctype="multipart/form-data" action="{% url 'switterapp:add_swit' %}">
     {% csrf_token %}
     <div style="padding: 10px">
-        <label> Swit text:
-            {{ form.text }}
-        </label>
+        {{ form.as_p }}
         <span>{{ form.errors.name }}</span>
     </div>
 
