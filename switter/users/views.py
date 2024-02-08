@@ -3,12 +3,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.core.exceptions import ObjectDoesNotExist
 
 from .forms import RegisterForm, LoginForm, ProfileForm
-from .models import Profile
-from django.contrib.auth.models import User
+from .models import Profile, Followings
 
 # Create your views here.
 def signupuser(request):
@@ -72,4 +73,29 @@ def my_profile(request):
 
 def view_profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
+
+    if request.user.is_authenticated:
+        profile.following_allowed = True
+        try:
+            Followings.objects.get(follower_id=request.user.id, following_id=user_id)
+            profile.is_followed = True
+        except ObjectDoesNotExist:
+            profile.is_followed = False
+    else:
+        profile.following_allowed = False
+        
     return render(request, 'users/view_profile.html', {'profile': profile})
+
+
+@login_required
+def follow_user(request, user_id):
+    follower = request.user
+    following = get_object_or_404(User, pk=user_id)
+    Followings.objects.create(follower=follower, following=following)
+    return redirect(to='users:view_profile', user_id=user_id)
+
+
+@login_required
+def unfollow_user(request, user_id):
+    Followings.objects.get(follower_id=request.user.id, following_id=user_id).delete()
+    return redirect(to='users:view_profile', user_id=user_id)
