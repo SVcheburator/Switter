@@ -11,7 +11,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from .forms import RegisterForm, LoginForm, ProfileForm
 from .models import Profile, Followings
 
-# Create your views here.
+
+# User actions
 def signupuser(request):
     if request.user.is_authenticated:
         return redirect(to='switterapp:main')
@@ -36,11 +37,11 @@ def loginuser(request):
         if user is None:
             messages.error(request, 'Username or password didn\'t match')
             return redirect(to='users:login')
-
         login(request, user)
         return redirect(to='switterapp:main')
 
     return render(request, 'users/login.html', context={"form": LoginForm()})
+
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'users/password_reset.html'
@@ -57,6 +58,7 @@ def logoutuser(request):
     return redirect(to='switterapp:main')
 
 
+# Profiles
 @login_required
 def my_profile(request):
     if request.method == 'POST':
@@ -65,9 +67,9 @@ def my_profile(request):
             profile_form.save()
             messages.success(request, 'Your profile is updated successfully')
             return redirect(to='users:my_profile')
-
     else:
         profile_form = ProfileForm(instance=request.user.profile)
+
     return render(request, 'users/my_profile.html', {'profile_form': profile_form})
 
 
@@ -86,6 +88,7 @@ def view_profile(request, user_id):
     return render(request, 'users/view_profile.html', {'profile': profile})
 
 
+# Followings
 @login_required
 def follow_user(request, user_id):
     follower = request.user

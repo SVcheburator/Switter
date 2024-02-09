@@ -10,11 +10,11 @@ class Swits(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
-    
     def _str_(self):
         return f"{self.text}"
     
 
+# Reactions
 class Likes(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     swit = models.ForeignKey(Swits, on_delete=models.CASCADE)
@@ -39,7 +39,6 @@ class Comments(models.Model):
     swit = models.ForeignKey(Swits, on_delete=models.CASCADE)
     text = models.CharField(max_length=500, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
 
     def _str_(self):
         return f"{self.text}"

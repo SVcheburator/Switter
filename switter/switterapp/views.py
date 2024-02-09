@@ -6,7 +6,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from .forms import SwitForm, CommentForm
 from .models import Swits, Likes, Dislikes, Comments
 
-# Create your views here.
+
+# Main
 def main(request):
     swits = Swits.objects.all()
 
@@ -17,6 +18,7 @@ def main(request):
     return render(request, 'switterapp/index.html', {'swits': swits})
 
 
+# Swits
 @login_required
 def add_swit(request):
     if request.method == 'POST':
@@ -39,7 +41,7 @@ def detail_swit(request, swit_id):
     return render(request, 'switterapp/detail_swit.html', {'swit': swit, 'likes': likes, 'dislikes': dislikes})
 
 
-
+# Reactions
 @login_required(login_url='/users/login/')
 def like_swit(request, swit_id):
     swit = get_object_or_404(Swits, pk=swit_id)
@@ -72,6 +74,7 @@ def dislike_swit(request, swit_id):
     return redirect(to='switterapp:detail_swit', swit_id=swit_id)
 
 
+# Comments
 @login_required(login_url='/users/login/')
 def add_comment(request, swit_id):
     swit = get_object_or_404(Swits, pk=swit_id)
