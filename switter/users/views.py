@@ -73,16 +73,15 @@ def my_profile(request):
 
 def view_profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
+    profile.is_followed = False
 
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and request.user.id != user_id:
         profile.following_allowed = True
         try:
             Followings.objects.get(follower_id=request.user.id, following_id=user_id)
             profile.is_followed = True
         except ObjectDoesNotExist:
-            profile.is_followed = False
-    else:
-        profile.following_allowed = False
+            ...
         
     return render(request, 'users/view_profile.html', {'profile': profile})
 
