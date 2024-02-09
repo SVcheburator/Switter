@@ -38,7 +38,8 @@ def detail_swit(request, swit_id):
     swit = get_object_or_404(Swits, pk=swit_id)
     likes = Likes.objects.filter(swit_id=swit_id).count()
     dislikes = Dislikes.objects.filter(swit_id=swit_id).count()
-    return render(request, 'switterapp/detail_swit.html', {'swit': swit, 'likes': likes, 'dislikes': dislikes})
+    comments = Comments.objects.filter(swit_id=swit_id).count()
+    return render(request, 'switterapp/detail_swit.html', {'swit': swit, 'likes': likes, 'dislikes': dislikes, 'comments': comments})
 
 
 # Reactions
