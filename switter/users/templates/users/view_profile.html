@@ -4,11 +4,14 @@
 
 <p>Author: {{profile.user.username}}</p>
 
+<p>Followers: {{profile.followers}}</p>
+<p>Follows: {{profile.follows}}</p>
+
 {% if profile.following_allowed == True %}
     {% if profile.is_followed == False %}
-    <p><a href="{% url 'users:follow_user' profile.user.id %}">Follow_btn</a></p>
+    <p><a href="{% url 'users:follow_user' profile.user.id %}" role="button">Follow_btn</a></p>
     {% else %}
-    <p><a href="{% url 'users:unfollow_user' profile.user.id %}">Unfollow_btn</a></p>
+    <p><a href="{% url 'users:unfollow_user' profile.user.id %}" role="button">Unfollow_btn</a></p>
     {% endif %}
 {% endif %}
 

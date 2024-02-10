@@ -84,6 +84,9 @@ def view_profile(request, user_id):
             profile.is_followed = True
         except ObjectDoesNotExist:
             ...
+
+    profile.followers = Followings.objects.filter(following_id=user_id).count()
+    profile.follows = Followings.objects.filter(follower_id=user_id).count()
         
     return render(request, 'users/view_profile.html', {'profile': profile})
 
