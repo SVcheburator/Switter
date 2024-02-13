@@ -104,3 +104,13 @@ def follow_user(request, user_id):
 def unfollow_user(request, user_id):
     Followings.objects.get(follower_id=request.user.id, following_id=user_id).delete()
     return redirect(to='users:view_profile', user_id=user_id)
+
+
+def show_followers(request, user_id):
+    followers = Followings.objects.filter(following_id = user_id)
+    return render(request, 'users/show_followers.html', {'user_id': user_id, 'followers': followers})
+
+
+def show_follows(request, user_id):
+    follows = Followings.objects.filter(follower_id = user_id)
+    return render(request, 'users/show_follows.html', {'user_id': user_id, 'follows': follows})

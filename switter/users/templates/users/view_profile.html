@@ -4,8 +4,8 @@
 
 <p>Author: {{profile.user.username}}</p>
 
-<p>Followers: {{profile.followers}}</p>
-<p>Follows: {{profile.follows}}</p>
+<p><a href="{% url 'users:show_followers' profile.user.id %}">Followers: {{profile.followers}}</a></p>
+<p><a href="{% url 'users:show_follows' profile.user.id %}">Follows: {{profile.follows}}</a></p>
 
 {% if profile.following_allowed == True %}
     {% if profile.is_followed == False %}

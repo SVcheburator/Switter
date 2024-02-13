@@ -1,0 +1,18 @@
+{% extends "switterapp/base.html" %}
+
+{% block content %}
+
+<nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+    <ul>
+        <li><a href="{% url 'users:view_profile' user_id %}" role="button">Go back to the profile</a></li>
+    </ul>
+</nav>
+
+{% for follow in follows %}
+<ul>
+    <li>
+        <p><a href="{% url 'users:view_profile' follow.following.id %}">{{follow.following.username}}</a></p>
+    </li>
+</ul>
+{% endfor %}
+{% endblock %}
