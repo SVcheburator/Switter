@@ -1,0 +1,64 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #797878;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Main */
+main.container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+
+/* Navbar */
+.navbar {
+    border-radius: 8px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.navbar-nav {
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 100%;
+    flex-direction: row;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000000;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #717171;
+}
+
+.navbar-light .navbar-nav .logout-link:hover {
+    color: #fe0000;
+}
+
+
+/* Swits */
+.list-group-item {
+    border: 1px solid #dee2e6;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.list-group-item a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.list-group-item a:hover {
+    color: #717171;
+}
+
+.list-group-item p {
+    margin: 10px 0;
+}
