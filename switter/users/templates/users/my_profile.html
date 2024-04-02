@@ -7,7 +7,7 @@
 {% block content %}
 
 <div>
-    <h1><a href="{% url 'users:view_profile' user.id %}">{{user.username}}</a> - your profile settings</h1>
+    <h1><a class="user-profile-preview-link" href="{% url 'users:view_profile' user.id %}">{{user.username}}</a> - your profile settings</h1>
     {% if profile_form.avatar.value %}
       <a href="{{ profile_form.avatar.value.url }}" target="_blank">
         <img src="{{ user.profile.avatar.url }}" width="250" height="250" alt="Current Avatar">

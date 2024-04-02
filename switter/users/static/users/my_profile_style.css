@@ -1,0 +1,16 @@
+.custom-form {
+    padding-top: 15px;
+}
+
+
+/* User profile preview link */
+.user-profile-preview-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.user-profile-preview-link:hover {
+    color: #373737;
+    text-decoration: none;
+}

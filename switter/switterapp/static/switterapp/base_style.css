@@ -61,3 +61,13 @@ main.container {
     color: #717171;
     text-decoration: none;
 }
+
+
+/* form file button */
+::-webkit-file-upload-button {
+    border-radius: 5px;
+}
+
+::-webkit-file-upload-button:hover {
+    color: #717171;
+}

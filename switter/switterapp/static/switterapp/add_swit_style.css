@@ -2,8 +2,3 @@
 .custom-form textarea {
     border-radius: 10px;
 }
-
-
-.custom-form ::-webkit-file-upload-button {
-    border-radius: 5px;
-}
