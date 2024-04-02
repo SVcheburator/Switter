@@ -1,26 +1,29 @@
-{% extends "switterapp/base.html" %}
+{% extends "switterapp/base.html" %} {% load static %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{% static 'switterapp/add_comment_style.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
-    <ul>
-        <li><a href="{% url 'switterapp:detail_swit' swit_id %}" role="button"> Go back to the swit </a></li>
-    </ul>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="{% url 'switterapp:detail_swit' swit_id %}" role="button">Go back to the swit</a></li>
+        </ul>
+    </div>
 </nav>
 
-<form method="POST" action="{% url 'switterapp:add_comment' swit_id %}">
+<form method="POST" action="{% url 'switterapp:add_comment' swit_id %}" class="mb-3">
     {% csrf_token %}
-    <div style="padding: 10px">
-        <label> Comment text:
-            {{ form.text }}
-        </label>
-        <span>{{ form.errors.name }}</span>
+    <div class="mb-3">
+        <label for="id_text" class="form-label">Comment text:</label>
+        {{ form.text }}
+        <div class="text-danger">{{ form.errors.text }}</div>
     </div>
 
-    <div class="grid">
-        <button type="submit">Submit</button>
-        <button type="reset" class="secondary">Reset</button>
-    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-secondary">Reset</button>
 </form>
 
 {% endblock %}

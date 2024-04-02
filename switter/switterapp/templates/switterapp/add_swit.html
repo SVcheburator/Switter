@@ -1,17 +1,21 @@
-{% extends "switterapp/base.html" %}
+{% extends "switterapp/base.html" %} {% load static %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{% static 'switterapp/add_swit_style.css' %}">
+{% endblock %}
+
 
 {% block content %}
 
-<form method="POST" enctype="multipart/form-data" action="{% url 'switterapp:add_swit' %}">
+<form method="POST" enctype="multipart/form-data" action="{% url 'switterapp:add_swit' %}" class="mb-3 custom-form">
     {% csrf_token %}
-    <div style="padding: 10px">
+    <div class="mb-3">
         {{ form.as_p }}
-        <span>{{ form.errors.name }}</span>
+        <div class="text-danger">{{ form.errors.text }}</div>
     </div>
 
-    <div class="grid">
-        <button type="submit">Submit</button>
-        <button type="reset" class="secondary">Reset</button>
-    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-secondary">Reset</button>
 </form>
+
 {% endblock %}
