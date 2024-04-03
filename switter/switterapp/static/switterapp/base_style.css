@@ -68,8 +68,11 @@ main.container {
     padding-bottom: 10px;
 }
 
+.custom-form input[type="text"],
+.custom-form textarea {
+    border-radius: 10px;
+}
 
-/* form file button */
 ::-webkit-file-upload-button {
     border-radius: 5px;
 }
