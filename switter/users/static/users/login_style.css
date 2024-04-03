@@ -1,0 +1,8 @@
+.forgot-pwd-btn a {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.forgot-pwd-btn a:hover {
+    color: #373737;
+}

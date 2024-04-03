@@ -63,6 +63,12 @@ main.container {
 }
 
 
+/* form inputs*/
+.form-group {
+    padding-bottom: 10px;
+}
+
+
 /* form file button */
 ::-webkit-file-upload-button {
     border-radius: 5px;
