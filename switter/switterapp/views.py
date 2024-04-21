@@ -34,6 +34,18 @@ def add_swit(request):
     return render(request, 'switterapp/add_swit.html', {'form': SwitForm})
 
 
+@login_required
+def manage_swit(request, swit_id):
+    swit = get_object_or_404(Swits, pk=swit_id)
+    return render(request, 'switterapp/manage_swit.html', {'swit': swit})
+
+
+@login_required
+def delete_swit(request, swit_id):
+    get_object_or_404(Swits, pk=swit_id).delete()
+    return redirect(to='switterapp:main')
+
+
 def detail_swit(request, swit_id):
     swit = get_object_or_404(Swits, pk=swit_id)
     likes = Likes.objects.filter(swit_id=swit_id).count()
