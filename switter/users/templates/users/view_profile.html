@@ -2,10 +2,12 @@
 
 {% block content %}
 
-<p>Author: {{profile.user.username}}</p>
+<h1 style="font-weight: bold; color: black;">{{profile.user.username}}</h1>
 
-<p><a href="{% url 'users:show_followers' profile.user.id %}">Followers: {{profile.followers}}</a></p>
-<p><a href="{% url 'users:show_follows' profile.user.id %}">Follows: {{profile.follows}}</a></p>
+<div style="margin-bottom: 10px;">
+    <a href="{% url 'users:show_followers' profile.user.id %}" role="button" class="btn btn-primary">Followers: {{profile.followers}}</a>
+    <a href="{% url 'users:show_follows' profile.user.id %}" role="button" class="btn btn-primary" style="margin-left: 5px;">Follows: {{profile.follows}}</a>
+</div>
 
 {% if profile.following_allowed == True %}
     {% if profile.is_followed == False %}
@@ -14,7 +16,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
                 <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
                 <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
-            </svg> &nbspFollow_btn
+            </svg> &nbspFollow
         </a>
     </p>
     {% else %}
@@ -23,7 +25,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
                 <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
                 <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
-            </svg> &nbspUnfollow_btn
+            </svg> &nbspUnfollow
         </a>
     </p>
     {% endif %}
