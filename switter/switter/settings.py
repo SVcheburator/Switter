@@ -19,6 +19,8 @@ import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import environ
 import os
+import django_heroku
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -162,3 +164,6 @@ EMAIL_USE_TLS = False
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+django_heroku.settings(locals())

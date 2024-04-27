@@ -1,0 +1,1 @@
+web gunicorn switter.wsgi:application --log-file -
