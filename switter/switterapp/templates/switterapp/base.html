@@ -12,6 +12,7 @@
 <body>
 <main class="container">
 
+    {% block navigation_bar %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
@@ -24,6 +25,7 @@
             </li>
         </ul>
     </nav>
+    {% endblock %}
 
     {% block content %} {% endblock %}
 </main>
